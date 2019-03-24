@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown Select matches its default snapshot 1`] = `
+exports[`Search Owner matches its  1`] = `
 <select
   name="default"
   onChange={[Function]}
@@ -14,7 +14,7 @@ exports[`Dropdown Select matches its default snapshot 1`] = `
 </select>
 `;
 
-exports[`Dropdown Select matches its snapshot 1`] = `
+exports[`Search Owner matches its snapshot default props 1`] = `
 <select
   name="default"
   onChange={[Function]}

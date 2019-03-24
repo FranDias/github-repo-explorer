@@ -4,13 +4,12 @@ import debounce from "lodash/debounce";
 
 class SearchOwner extends Component {
   constructor(props) {
-    super(props)
-    const {onChange} = this.props
-
-    this.onChange = debounce(onChange, 300) 
+    super(props);
+    this.onChange = debounce(this.props.onChange, 300);
   }
+
   static defaultProps = {
-    placeholder: "Search an organization's repositories",
+    placeholder: "Search an organization's repositories. Now showing HubSpot's",
     onChange: () => {}
   };
 
@@ -18,6 +17,10 @@ class SearchOwner extends Component {
     placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired
   };
+
+  componentWillUnmount() {
+    this.onChange.cancel();
+  }
 
   render() {
     const { placeholder } = this.props;

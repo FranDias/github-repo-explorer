@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import debounce from "lodash/debounce";
 import Select from "./components/Select";
 import SearchOwner from "./components/SearchOwner";
 import "./App.css";
@@ -26,11 +25,18 @@ class App extends Component {
     this.selectSortCount = this.selectSortCount.bind(this);
     this.reverseSort = this.reverseSort.bind(this);
     this.fetchCommits = this.fetchCommits.bind(this);
-    this.handleInputChange = debounce(this.handleInputChange.bind(this), 300);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  newFetch(url) {
-    fetch(`${apiBase}/${this.state.ownerChoices}/${this.state.owner}/repos`)
+  newFetch() {
+    const {ownerChoices, owner} = this.state;
+
+    if (owner.length < 2) {
+      this.setState({repos: [], repoError: true})
+      return null
+    }
+    
+    fetch(`${apiBase}/${ownerChoices}/${owner}/repos`)
       .then(data => data.json())
       .then(json => this.setState({ repos: json, repoError: false }))
       .catch(() => {
@@ -41,11 +47,7 @@ class App extends Component {
   componentWillMount() {
     this.newFetch();
   }
-
-  componentWillUnmount() {
-    this.handleInputChange.cancel();
-  }
-
+  
   handleInputChange(e) {
     this.setState({ owner: e });
     this.newFetch();
@@ -117,11 +119,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div>
-            <input
-              type="text"
-              placeholder="Search an organization's repositories"
-              onChange={e => this.handleInputChange(e.nativeEvent.target.value)}
-            />
+            <SearchOwner onChange={this.handleInputChange} />
             <Select
               onChange={this.selectOnChange}
               name="ownerType"
