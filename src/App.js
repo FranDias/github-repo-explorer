@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Select from "./components/Select";
 import SearchOwner from "./components/SearchOwner";
+import SortOrderButton from "./components/SortOrderButton";
 import "./App.css";
 
 const apiBase = "https://api.github.com";
@@ -130,7 +131,7 @@ class App extends Component {
               name="selectSortOption"
               options={sortOptions}
             />
-            <button onClick={this.reverseSort}>reverse sort</button>
+            <SortOrderButton onClick={this.reverseSort} />
           </div>
           <div>
             {repos.length > 0 &&
