@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown Select doesn't deviate from expected 1`] = `
+exports[`Dropdown Select renders a select element 1`] = `
 <select
   onChange={[Function]}
 >
