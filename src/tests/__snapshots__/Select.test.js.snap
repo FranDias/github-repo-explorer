@@ -2,6 +2,7 @@
 
 exports[`Dropdown Select renders a select element 1`] = `
 <select
+  name="default"
   onChange={[Function]}
 >
   <option

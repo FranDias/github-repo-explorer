@@ -30,5 +30,13 @@ describe("Dropdown Select", () => {
         expect(component.find(Select).props()[key]).toEqual(selectOptions[key]);
       });
     });
+    it("uses default Props for Optons", () => {
+      const component = mount(
+        <Select />
+      )
+      const componentProps = component.find(Select).props()
+      expect(componentProps.name).toEqual("default")
+      expect(componentProps.options).toEqual(["no options provied"])
+    })
   });
 });
