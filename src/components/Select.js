@@ -1,16 +1,36 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 
-class App extends Component {
+class Select extends PureComponent {
+  static propTypes = {
+    name: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.arrayOf(PropTypes.string).isRequired
+  };
 
-    render (
-        <select onChange={this.selectSortCount} name="selectSortOption">
-        {sortOptions.map(choice => (
+  static defaultProps = {
+    onChange: () => {},
+    options: ["no options provied"]
+  };
+
+  getname() {
+    const { name } = this.props;
+    return name !== undefined ? name : "";
+  }
+
+  render() {
+    const { onChange, name, options } = this.props;
+
+    return (
+      <select {...{ onChange, name }}>
+        {options.map(choice => (
           <option key={choice} value={choice}>
             Sort by {choice}
           </option>
         ))}
       </select>
-    )
+    );
+  }
 }
 
 export default Select;
