@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import debounce from "lodash/debounce";
 import Select from "./components/Select";
+import SearchOwner from "./components/SearchOwner";
 import "./App.css";
 
 const apiBase = "https://api.github.com";
@@ -12,7 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       repos: [],
-      user: "netflix",
+      owner: "hubSpot",
       ownerChoices: ownerChoices[0],
       sortBy: sortOptions[0],
       direction: 1,
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   newFetch(url) {
-    fetch(`${apiBase}/${this.state.ownerChoices}/${this.state.user}/repos`)
+    fetch(`${apiBase}/${this.state.ownerChoices}/${this.state.owner}/repos`)
       .then(data => data.json())
       .then(json => this.setState({ repos: json, repoError: false }))
       .catch(() => {
@@ -46,7 +47,7 @@ class App extends Component {
   }
 
   handleInputChange(e) {
-    this.setState({ user: e });
+    this.setState({ owner: e });
     this.newFetch();
   }
 

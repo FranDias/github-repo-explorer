@@ -9,6 +9,7 @@ class Select extends PureComponent {
   };
 
   static defaultProps = {
+    name: "default",
     onChange: () => {},
     options: ["no options provied"]
   };
