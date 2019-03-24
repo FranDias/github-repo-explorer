@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import debounce from "lodash/debounce";
+import Select from "./components/Select";
 import "./App.css";
 
 const apiBase = "https://api.github.com";
@@ -32,7 +33,7 @@ class App extends Component {
       .then(data => data.json())
       .then(json => this.setState({ repos: json, repoError: false }))
       .catch(() => {
-        this.setState({ repoError: true});
+        this.setState({ repoError: true });
       });
   }
 
@@ -120,22 +121,16 @@ class App extends Component {
               placeholder="Search an organization's repositories"
               onChange={e => this.handleInputChange(e.nativeEvent.target.value)}
             />
-
-            <select onChange={this.selectOnChange} name="ownerType">
-              {ownerChoices.map(choice => (
-                <option key={choice} value={choice}>
-                  {choice}
-                </option>
-              ))}
-            </select>
-
-            <select onChange={this.selectSortCount} name="selectSortOption">
-              {sortOptions.map(choice => (
-                <option key={choice} value={choice}>
-                  Sort by {choice}
-                </option>
-              ))}
-            </select>
+            <Select
+              onChange={this.selectOnChange}
+              name="ownerType"
+              options={ownerChoices}
+            />
+            <Select
+              onChange={this.selectSortCount}
+              name="selectSortOption"
+              options={sortOptions}
+            />
             <button onClick={this.reverseSort}>reverse sort</button>
           </div>
           <div>
