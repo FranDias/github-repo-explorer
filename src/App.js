@@ -47,11 +47,7 @@ class App extends Component {
   componentWillMount() {
     this.newFetch();
   }
-
-  componentWillUnmount() {
-    this.handleInputChange.cancel();
-  }
-
+  
   handleInputChange(e) {
     this.setState({ owner: e });
     this.newFetch();
