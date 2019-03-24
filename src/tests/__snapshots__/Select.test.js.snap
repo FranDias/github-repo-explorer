@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown Select doesn't deviate from expected 1`] = `
+<select
+  onChange={[Function]}
+>
+  <option
+    value="no options provied"
+  >
+    Sort by 
+    no options provied
+  </option>
+</select>
+`;
