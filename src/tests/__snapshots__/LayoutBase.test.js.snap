@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutBase matches its snapshot with children props 1`] = `
+<div>
+  <div />
+</div>
+`;
+
+exports[`LayoutBase matches its snapshot with header props 1`] = `
+<div>
+  <header />
+</div>
+`;
+
+exports[`LayoutBase matches its snapshot with minimal props 1`] = `<div />`;
