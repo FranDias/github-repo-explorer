@@ -20,3 +20,10 @@ const propTypes = {
     })
   )
 };
+
+// this.fetchCommits = this.fetchCommits.bind(this);
+const fetchCommits = (commitURL, repoName) => {
+  fetch(commitURL)
+    .then(data => data.json())
+    .then(json => this.setState({ commits: json, commitName: repoName }));
+};

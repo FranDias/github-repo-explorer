@@ -1,0 +1,7 @@
+
+.repo-row .expand-pointer {
+  transition: transform 300ms ease-out;
+}
+.repo-row .expanded-pointer {
+  transform: rotate(90deg)
+}

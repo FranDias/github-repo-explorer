@@ -4,7 +4,7 @@ import SearchOwner from "./components/SearchOwner";
 import SortOrderButton from "./components/SortOrderButton";
 import LayoutBase from "./components/LayoutBase";
 import RepoTable from "./components/RepoDisplay/RepoTable";
-import "./App.css";
+import "./css/App.css";
 
 const apiBase = "https://api.github.com";
 const ownerChoices = ["orgs", "users"];
@@ -18,9 +18,7 @@ class App extends Component {
       owner: "hubSpot",
       ownerChoices: ownerChoices[0],
       sortBy: sortOptions[0],
-      direction: 1,
-      commits: [],
-      commitName: "",
+      sortDirection: undefined,
       repoError: undefined
     };
 
@@ -69,7 +67,12 @@ class App extends Component {
   }
 
   reverseSort() {
-    this.setState({ direction: this.state.direction * -1 });
+    const { sortDirection } = this.state;
+    if (sortDirection !== 0 && sortDirection !== 1) {
+      this.setState({ sortDirection: 1 });
+    } else {
+      this.setState({ sortDirection: sortDirection * -1 });
+    }
   }
 
   renderSearchControls() {
@@ -86,22 +89,25 @@ class App extends Component {
           name="selectSortOption"
           options={sortOptions}
         />
-        <SortOrderButton onClick={this.reverseSort} />
+        <SortOrderButton
+          sortDirection={this.state.sortDirection}
+          onClick={this.reverseSort}
+        />
       </React.Fragment>
     );
   }
 
   render() {
+    const { repos, sortDirection, sortBy } = this.state;
     return (
-      <LayoutBase
-        header={
-          <RepoTable
-            sortDirection={this.reverseSort()}
-            commits={this.state.commits}
-          />
-        }
-      >
-        {this.renderReposList()}
+      <LayoutBase header={this.renderSearchControls()}>
+        <RepoTable
+          {...{
+            sortDirection,
+            sortBy,
+            repos
+          }}
+        />
       </LayoutBase>
     );
   }
