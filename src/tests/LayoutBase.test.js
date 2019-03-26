@@ -22,12 +22,18 @@ describe("LayoutBase", () => {
   });
 
   it("matches its snapshot with header props", () => {
-    const component = renderer.create(<LayoutBase header={HeaderContent} />);
+    const component = renderer.create(
+      <LayoutBase header={<HeaderContent />} />
+    );
     expect(component).toMatchSnapshot();
   });
 
   it("matches its snapshot with children props", () => {
-    const component = renderer.create(<LayoutBase>{BodyContent}</LayoutBase>);
+    const component = renderer.create(
+      <LayoutBase>
+        <BodyContent />
+      </LayoutBase>
+    );
     expect(component).toMatchSnapshot();
   });
 
@@ -35,10 +41,11 @@ describe("LayoutBase", () => {
     let component;
     beforeEach(() => {
       component = shallow(
-        <LayoutBase header={HeaderContent}>{BodyContent}</LayoutBase>
+        <LayoutBase header={<HeaderContent />}>
+          <BodyContent />
+        </LayoutBase>
       );
     });
-    debugger
     it("a header", () => {
       expect(component.find(HeaderContent).exists()).toBe(true);
     });

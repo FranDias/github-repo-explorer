@@ -11,8 +11,8 @@ const LayoutBase = ({ header, children }) => {
 };
 
 LayoutBase.propTypes = {
-  header: PropTypes.oneOf([PropTypes.node, PropTypes.func]),
-  children: PropTypes.oneOf([PropTypes.node, PropTypes.func])
+  header: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default LayoutBase;

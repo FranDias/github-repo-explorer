@@ -2,13 +2,17 @@
 
 exports[`LayoutBase matches its snapshot with children props 1`] = `
 <div>
-  <div />
+  <div>
+    <body />
+  </div>
 </div>
 `;
 
 exports[`LayoutBase matches its snapshot with header props 1`] = `
 <div>
-  <header />
+  <header>
+    <div />
+  </header>
 </div>
 `;
 
