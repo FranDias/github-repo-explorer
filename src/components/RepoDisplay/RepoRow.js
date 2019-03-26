@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import RepoCell from "./RepoCell";
 import "./../../css/RepoRow.css";
 
 class RepoRow extends PureComponent {
@@ -36,48 +37,43 @@ class RepoRow extends PureComponent {
       forks_count,
       open_issues_count,
       open_issues_url
-    } = this.props;
+    } = this.props.repo;
 
-    const chonesAttrs = {
-      name: { lable: "name", url: url, text: name },
-      description: { label: "description", text: description, expands: true },
-      stargazers_count: { lable: "⭐", text: stargazers_count },
-      forks_count: { label: "forks", text: forks_count },
+    const chosenAttributes = {
+      name: { label: "Name", url: url, text: name },
+      description: { label: "Description", text: description, expands: true },
+      stargazers_count: { label: "Stars", text: stargazers_count },
+      forks_count: { label: "Forks", text: forks_count },
       open_issues_count: {
-        label: "Open issues",
+        label: "Issues",
         text: open_issues_count,
         url: open_issues_url
       }
     };
+
+    return Object.values(chosenAttributes).map(
+      ({ label, url, text, expands }) => (
+        <RepoCell {...{ key: label, label, url, text, expands }} />
+      )
+    );
   }
 
   renderExpandButton() {
     const { expanded } = this.state;
     const className = expanded ? "rotate-90" : "";
+
     return (
       <button onClick={() => this.setState({ expanded: !expanded })}>
-        <span className={`expand-pointer ${className}`}>▶</span>
+        <div className={className}>▶</div>
       </button>
     );
   }
 
   render() {
-    const { repo } = this.props;
     return (
       <span className="repo-row">
-        <span>{repo.name}</span>,
-        <span role="img" aria-labelledby="star">
-          ⭐
-        </span>
-        {repo.stargazers_count},
-        <span role="img" aria-labelledby="fork">
-          🍴
-        </span>
-        {repo.forks_count},
-        <span role="img" aria-labelledby="alarm">
-          🚨
-        </span>
-        {repo.open_issues_count}
+        {this.renderChosenAttributes()}
+        {this.renderExpandButton()}
       </span>
     );
   }

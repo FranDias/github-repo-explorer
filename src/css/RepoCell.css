@@ -1,0 +1,18 @@
+.repo-cell {
+  padding: 1em;
+  flex-grow: 1
+}
+
+.repo-cell:first-of-type {
+  width: 9em;
+}
+
+.repo-cell .label {
+  opacity: 0.1;
+  transition: opacity 300ms ease;
+}
+
+.repo-row:hover .repo-cell .label {
+  opacity: 1
+}
+
