@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Select from "./components/Select";
 import SearchOwner from "./components/SearchOwner";
 import SortOrderButton from "./components/SortOrderButton";
+import LayoutBase from "./components/LayoutBase";
 import "./App.css";
 
 const apiBase = "https://api.github.com";
@@ -114,39 +115,48 @@ class App extends Component {
     );
   }
 
-  render() {
+  renderSearchControls() {
+    return (
+      <React.Fragment>
+        <SearchOwner onChange={this.handleInputChange} />
+        <Select
+          onChange={this.selectOnChange}
+          name="ownerType"
+          options={ownerChoices}
+        />
+        <Select
+          onChange={this.selectSortCount}
+          name="selectSortOption"
+          options={sortOptions}
+        />
+        <SortOrderButton onClick={this.reverseSort} />
+      </React.Fragment>
+    );
+  }
+
+  renderReposList() {
     const { direction, repos, sortBy } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <div>
-            <SearchOwner onChange={this.handleInputChange} />
-            <Select
-              onChange={this.selectOnChange}
-              name="ownerType"
-              options={ownerChoices}
-            />
-            <Select
-              onChange={this.selectSortCount}
-              name="selectSortOption"
-              options={sortOptions}
-            />
-            <SortOrderButton onClick={this.reverseSort} />
-          </div>
-          <div>
-            {repos.length > 0 &&
-              repos
-                .sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1) * direction)
-                .map(repo => {
-                  return (
-                    <div key={repo.name} className="repo-list-item">
-                      {this.renderRepoAttributes(repo)}
-                    </div>
-                  );
-                })}
-          </div>
-        </header>
-      </div>
+      <React.Fragment>
+        {repos.length > 0 &&
+          repos
+            .sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1) * direction)
+            .map(repo => {
+              return (
+                <div key={repo.name} className="repo-list-item">
+                  {this.renderRepoAttributes(repo)}
+                </div>
+              );
+            })}
+      </React.Fragment>
+    );
+  }
+
+  render() {
+    return (
+      <LayoutBase header={this.renderSearchControls()}>
+        {this.renderReposList()}
+      </LayoutBase>
     );
   }
 }
