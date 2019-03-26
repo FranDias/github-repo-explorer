@@ -2,6 +2,7 @@
   "name": "github-repo-explorer",
   "version": "0.1.0",
   "private": true,
+  "license": "WTFPL",
   "dependencies": {
     "lodash.debounce": "^4.0.8",
     "react": "^16.8.5",
