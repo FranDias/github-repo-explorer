@@ -1,11 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SearchOwner from "../components/Select";
-
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-
 configure({ adapter: new Adapter() });
+
 describe("Search Owner", () => {
   it("matches its snapshot default props", () => {
     const component = renderer.create(<SearchOwner />);
