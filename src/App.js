@@ -30,13 +30,13 @@ class App extends Component {
   }
 
   newFetch() {
-    const {ownerChoices, owner} = this.state;
+    const { ownerChoices, owner } = this.state;
 
     if (owner.length < 2) {
-      this.setState({repos: [], repoError: true})
-      return null
+      this.setState({ repos: [], repoError: true });
+      return null;
     }
-    
+
     fetch(`${apiBase}/${ownerChoices}/${owner}/repos`)
       .then(data => data.json())
       .then(json => this.setState({ repos: json, repoError: false }))
@@ -48,7 +48,7 @@ class App extends Component {
   componentWillMount() {
     this.newFetch();
   }
-  
+
   handleInputChange(e) {
     this.setState({ owner: e });
     this.newFetch();
