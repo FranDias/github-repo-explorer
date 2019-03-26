@@ -1,30 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class SortOrderButton extends Component {
-  static propTypes = {
-    sortDirection: PropTypes.oneOf([undefined, "asc", "dec"]),
-    onClick: PropTypes.func.isRequired
-  };
+const arrowDirectionContent = sortDirection => {
+  if (!sortDirection) return "•";
+  return sortDirection === "asc" ? "⬆" : "⬇";
+};
 
-  static defaultProps = {
-    sortDirection: undefined
-  };
+const SortOrderButton = ({ sortDirection, onClick }) => (
+  <button onClick={onClick}>{arrowDirectionContent(sortDirection)}</button>
+);
 
-  renderArrowDirection() {
-    const { sortDirection } = this.props;
-    if (!sortDirection) return "•";
+SortOrderButton.ropTypes = {
+  sortDirection: PropTypes.oneOf([undefined, "asc", "dec"]),
+  onClick: PropTypes.func.isRequired
+};
 
-    return this.props.sortDirection === "asc" ? "⬆" : "⬇";
-  }
-
-  render() {
-    return (
-      <button onClick={this.props.onClick}>
-        {this.renderArrowDirection()}
-      </button>
-    );
-  }
-}
+SortOrderButton.defaultProps = {
+  sortDirection: undefined
+};
 
 export default SortOrderButton;
