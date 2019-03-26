@@ -23,7 +23,7 @@ describe("Dropdown Select", () => {
   it("matches its default snapshot", () => {
     const component = renderer.create(<Select />);
     expect(component).toMatchSnapshot();
-  })
+  });
 
   describe("props", () => {
     Object.keys(selectProps).map(key => {
