@@ -3,6 +3,7 @@ import Select from "./components/Select";
 import SearchOwner from "./components/SearchOwner";
 import SortOrderButton from "./components/SortOrderButton";
 import LayoutBase from "./components/LayoutBase";
+import RepoTable from "./components/RepoDisplay/RepoTable";
 import "./App.css";
 
 const apiBase = "https://api.github.com";
@@ -26,7 +27,6 @@ class App extends Component {
     this.selectOnChange = this.selectOnChange.bind(this);
     this.selectSortCount = this.selectSortCount.bind(this);
     this.reverseSort = this.reverseSort.bind(this);
-    this.fetchCommits = this.fetchCommits.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -72,49 +72,6 @@ class App extends Component {
     this.setState({ direction: this.state.direction * -1 });
   }
 
-  fetchCommits(commitURL, repoName) {
-    fetch(commitURL)
-      .then(data => data.json())
-      .then(json => this.setState({ commits: json, commitName: repoName }));
-  }
-
-  renderRepoAttributes(repo) {
-    const { commits, commitName, repoError } = this.state;
-    if (repoError) {
-      return <span>…looks like we ran into a problem</span>;
-    }
-    return (
-      <span>
-        <span>{repo.name}</span>,
-        <span role="img" aria-labelledby="star">
-          ⭐
-        </span>
-        {repo.stargazers_count},
-        <span role="img" aria-labelledby="fork">
-          🍴
-        </span>
-        {repo.forks_count},
-        <span role="img" aria-labelledby="alarm">
-          🚨
-        </span>
-        {repo.open_issues_count},
-        <button
-          onClick={() =>
-            this.fetchCommits(repo.commits_url.split("{")[0], repo.name)
-          }
-        >
-          <span role="img" aria-labelledby="commit">
-            💍
-          </span>
-          commits
-        </button>
-        {repo.name === commitName &&
-          commits.map(commit => <div>{commit.commit.author.name}</div>)}
-        }
-      </span>
-    );
-  }
-
   renderSearchControls() {
     return (
       <React.Fragment>
@@ -134,27 +91,16 @@ class App extends Component {
     );
   }
 
-  renderReposList() {
-    const { direction, repos, sortBy } = this.state;
-    return (
-      <React.Fragment>
-        {repos.length > 0 &&
-          repos
-            .sort((a, b) => (a[sortBy] > b[sortBy] ? -1 : 1) * direction)
-            .map(repo => {
-              return (
-                <div key={repo.name} className="repo-list-item">
-                  {this.renderRepoAttributes(repo)}
-                </div>
-              );
-            })}
-      </React.Fragment>
-    );
-  }
-
   render() {
     return (
-      <LayoutBase header={this.renderSearchControls()}>
+      <LayoutBase
+        header={
+          <RepoTable
+            sortDirection={this.reverseSort()}
+            commits={this.state.commits}
+          />
+        }
+      >
         {this.renderReposList()}
       </LayoutBase>
     );
