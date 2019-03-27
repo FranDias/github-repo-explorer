@@ -9,7 +9,8 @@ class SearchOwner extends Component {
   }
 
   static defaultProps = {
-    placeholder: "Search an organization's repositories, now dispaying HubSpot:",
+    placeholder:
+      "Search an organization's repositories, now dispaying HubSpot:",
     onChange: () => {}
   };
 

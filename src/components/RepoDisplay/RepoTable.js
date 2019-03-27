@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import RepoRow from "./RepoRow";
 
 const RepoTable = ({ repoError, repos, sortBy, sortDirection }) =>
-  repoError ? (
+  (repoError || !repos) ? (
     <div>That repo might not exist</div>
   ) : (
     <React.Fragment>

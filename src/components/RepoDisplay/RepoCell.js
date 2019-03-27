@@ -15,9 +15,9 @@ const RepoCell = ({ label, url, text, expands }) => {
   };
 
   const getClassNames = () => {
-    const expandClass = expands ? 'flex-grow-1' : '';
-    return `repo-cell ${expandClass}`
-  }
+    const expandClass = expands ? "flex-grow-1" : "";
+    return `repo-cell ${expandClass}`;
+  };
 
   return (
     <div className={getClassNames()}>

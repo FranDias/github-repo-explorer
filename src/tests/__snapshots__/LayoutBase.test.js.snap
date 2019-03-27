@@ -1,19 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LayoutBase matches its snapshot with children props 1`] = `
-<div>
-  <div>
+<div
+  className="layout-base"
+>
+  <div
+    className="body"
+  >
     <body />
   </div>
 </div>
 `;
 
 exports[`LayoutBase matches its snapshot with header props 1`] = `
-<div>
+<div
+  className="layout-base"
+>
   <header>
     <div />
   </header>
 </div>
 `;
 
-exports[`LayoutBase matches its snapshot with minimal props 1`] = `<div />`;
+exports[`LayoutBase matches its snapshot with minimal props 1`] = `
+<div
+  className="layout-base"
+/>
+`;

@@ -29,6 +29,11 @@ class RepoRow extends PureComponent {
   };
 
   renderChosenAttributes() {
+    // Test runner doesn't make the request
+    if (!this.props.repo) {
+      return undefined;
+    }
+
     const {
       url,
       name,
@@ -40,7 +45,7 @@ class RepoRow extends PureComponent {
     } = this.props.repo;
 
     const chosenAttributes = {
-      name: { label: "Name", url: url, text: name },
+      name: { label: "Name", url, text: name },
       description: { label: "Description", text: description, expands: true },
       stargazers_count: { label: "Stars", text: stargazers_count },
       forks_count: { label: "Forks", text: forks_count },
