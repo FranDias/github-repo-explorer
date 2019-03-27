@@ -38,5 +38,5 @@ tl;dr it's similar to OOCSS but not.
 }
 
 .flex-direction-column {
-  flex-direction: column
+  flex-direction: column !important
 }
