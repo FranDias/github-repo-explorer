@@ -1,0 +1,8 @@
+.repo-row {
+  display: flex;
+  padding-bottom: 1em;
+}
+
+.repo-row .rotate-90 {
+  transform: rotate(90deg);
+}

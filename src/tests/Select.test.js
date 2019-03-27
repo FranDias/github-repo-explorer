@@ -6,11 +6,9 @@ import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 
-const testFunction = () => {};
-
 const selectProps = {
   name: "testSelect",
-  onChange: testFunction,
+  onChange: () => {},
   options: ["zero", "one", "two"]
 };
 

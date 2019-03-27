@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 const LayoutBase = ({ header, children }) => {
   return (
-    <div>
+    <div className="layout-base">
       {header && <header>{header}</header>}
-      {children && <div>{children}</div>}
+      {children && <div className="body">{children}</div>}
     </div>
   );
 };

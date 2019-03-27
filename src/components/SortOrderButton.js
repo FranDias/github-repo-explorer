@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const arrowDirectionContent = sortDirection => {
   if (!sortDirection) return "•";
-  return sortDirection === "asc" ? "⬆" : "⬇";
+  return sortDirection === 1 ? "⬆" : "⬇";
 };
 
 const SortOrderButton = ({ sortDirection, onClick }) => (
@@ -11,7 +11,7 @@ const SortOrderButton = ({ sortDirection, onClick }) => (
 );
 
 SortOrderButton.ropTypes = {
-  sortDirection: PropTypes.oneOf([undefined, "asc", "dec"]),
+  sortDirection: PropTypes.oneOf([undefined, 1, -1]),
   onClick: PropTypes.func.isRequired
 };
 

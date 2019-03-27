@@ -23,12 +23,12 @@ describe("SortOrderButton", () => {
   });
 
   it('renders a "⬆" with sort order asc', () => {
-    component.setProps({ sortDirection: "asc" });
+    component.setProps({ sortDirection: 1 });
     expect(component.find("button").text()).toEqual("⬆");
   });
 
   it('renders a "⬇" with sort order dec', () => {
-    component.setProps({ sortDirection: "dec" });
+    component.setProps({ sortDirection: -1 });
     expect(component.find("button").text()).toEqual("⬇");
   });
 

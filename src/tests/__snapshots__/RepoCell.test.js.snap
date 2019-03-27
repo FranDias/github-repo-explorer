@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RepoCell snapshots matches its snapshot with no props 1`] = `
+<div
+  className="repo-cell "
+>
+  <div
+    className="label"
+  />
+  <div>
+    none
+  </div>
+</div>
+`;
+
+exports[`RepoCell snapshots matches snapshot with props 1`] = `
+<div
+  className="repo-cell "
+>
+  <div
+    className="label"
+  />
+  <div>
+    none
+  </div>
+</div>
+`;
+
+exports[`RepoCell snapshots matches snapshot with props 2`] = `
+<div
+  className="repo-cell "
+>
+  <div
+    className="label"
+  />
+  <div>
+    none
+  </div>
+</div>
+`;

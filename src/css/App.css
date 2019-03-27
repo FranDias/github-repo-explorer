@@ -1,5 +1,6 @@
-.repo-list-item:nth-child(2n){
-  background: gainsboro;
+.layout-base header {}
+.layout-base .body {
+  margin: 0 3vw;
 }
 
 input {
