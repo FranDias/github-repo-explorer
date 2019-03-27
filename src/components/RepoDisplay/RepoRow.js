@@ -1,13 +1,15 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import RepoCell from "./RepoCell";
+import CommitsGetter from "../commits/CommitsGetter";
 import "./../../css/RepoRow.css";
 
 class RepoRow extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false
+      expanded: false,
+      asked: false
     };
   }
 
@@ -24,7 +26,8 @@ class RepoRow extends PureComponent {
       forks_url: PropTypes.string,
       url: PropTypes.string,
       open_issues_count: PropTypes.number,
-      issues_url: PropTypes.string
+      issues_url: PropTypes.string,
+      commits_url: PropTypes.string
     })
   };
 
@@ -35,7 +38,7 @@ class RepoRow extends PureComponent {
     }
 
     const {
-      url,
+      html_url,
       name,
       description,
       stargazers_count,
@@ -45,7 +48,7 @@ class RepoRow extends PureComponent {
     } = this.props.repo;
 
     const chosenAttributes = {
-      name: { label: "Name", url, text: name },
+      name: { label: "Name", url: html_url, text: name },
       description: { label: "Description", text: description, expands: true },
       stargazers_count: { label: "Stars", text: stargazers_count },
       forks_count: { label: "Forks", text: forks_count },
@@ -68,18 +71,28 @@ class RepoRow extends PureComponent {
     const className = expanded ? "rotate-90" : "";
 
     return (
-      <button onClick={() => this.setState({ expanded: !expanded })}>
+      <button
+        onClick={() => this.setState({ expanded: !expanded, asked: true })}
+      >
         <div className={className}>▶</div>
       </button>
     );
   }
 
   render() {
+    if (!this.props.repo) return null;
+    const { commits_url } = this.props.repo;
+    const { expanded, asked } = this.state;
     return (
-      <span className="repo-row">
-        {this.renderChosenAttributes()}
-        {this.renderExpandButton()}
-      </span>
+      <div>
+        <span className="repo-row">
+          {this.renderChosenAttributes()}
+          {this.renderExpandButton()}
+        </span>
+        <div className={expanded ? "" : "repo-row-commit-holder"}>
+          {commits_url && asked && <CommitsGetter commits_url={commits_url} />}
+        </div>
+      </div>
     );
   }
 }
