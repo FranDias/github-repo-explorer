@@ -1,0 +1,15 @@
+img.commit-author {
+  max-height: 2em;
+  margin-right: 1em;
+  border-radius: 3px;
+}
+
+.commits {
+  margin-bottom: 1em;
+  background-color: #eee;
+  padding: 1em 1em 2em;
+}
+
+.commits .commit {
+  margin-bottom: 1em;
+}

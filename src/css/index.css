@@ -33,6 +33,10 @@ tl;dr it's similar to OOCSS but not.
   display: flex !important
 }
 
+.display-inline-block {
+  display: inline-block !important
+}
+
 .flex-grow-1 {
   flex-grow: 1 !important
 }

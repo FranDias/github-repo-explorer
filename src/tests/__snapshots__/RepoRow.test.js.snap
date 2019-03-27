@@ -1,33 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RepoCell snapshots matches its snapshot with no props 1`] = `
-<span
-  className="repo-row"
->
-  <button
-    onClick={[Function]}
-  >
-    <div
-      className=""
-    >
-      ▶
-    </div>
-  </button>
-</span>
-`;
+exports[`RepoCell snapshots matches its snapshot with no props 1`] = `null`;
 
-exports[`RepoCell snapshots matches snapshot with props 1`] = `
-<span
-  className="repo-row"
->
-  <button
-    onClick={[Function]}
-  >
-    <div
-      className=""
-    >
-      ▶
-    </div>
-  </button>
-</span>
-`;
+exports[`RepoCell snapshots matches snapshot with props 1`] = `null`;

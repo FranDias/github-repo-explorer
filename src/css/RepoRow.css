@@ -6,3 +6,8 @@
 .repo-row .rotate-90 {
   transform: rotate(90deg);
 }
+
+.repo-row-commit-holder {
+  height: 0;
+  overflow: hidden;
+}
